@@ -90,13 +90,31 @@ app.get("/four",async(req,res)=>{
         res.status(500).json({"error":err});
     }    
 })
+// app.get("/five",async(req,res)=>{
+//     try{
+//         let users=await User.aggregate([
+//             {
+//                 $group:{
+//                     _id:{city:"$city"},
+//                     totalUsers: { $sum:550 }
+//                 }
+//             }
+//         ]).sort("totalUsers").limit(10);
+
+//         console.log(users);
+//     }
+//     catch(err){
+//         console.log(err);
+//         res.status(500).json({"error":err});
+//     }    
+// })
 app.get("/five",async(req,res)=>{
     try{
         let users=await User.aggregate([
             {
                 $group:{
                     _id:{city:"$city"},
-                    totalUsers: { $sum: 1 }
+                    totalUsers:  { $sum: 1 }
                 }
             }
         ]).sort("totalUsers").limit(10);
@@ -108,4 +126,4 @@ app.get("/five",async(req,res)=>{
         res.status(500).json({"error":err});
     }    
 })
-
+             
